@@ -16,6 +16,8 @@ namespace NWI
             CreateMap<UpdateProductRequestDto, GetProductResponseDto>();
             CreateMap<UpdateProductRequestDto, Product>();
             CreateMap<Product, UpdateProductRequestDto>();
+
+            CreateMap<User, UserRequestDto>();
         }
     }
 }

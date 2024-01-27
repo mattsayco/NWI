@@ -7,7 +7,6 @@ namespace NWI.Services.ProductService
 {
     public class ProductService : IProductService
     {
-        private static List<GetProductResponseDto> products = new();
         public readonly IMapper _mapper;
         private readonly DataContext _context;
 
@@ -22,7 +21,7 @@ namespace NWI.Services.ProductService
             var serviceResponse = new ServiceResponse<List<GetProductResponseDto>>();
             try
             {
-                var test = await _context.Products.AddAsync(_mapper.Map<Product>(addProduct));
+                await _context.Products.AddAsync(_mapper.Map<Product>(addProduct));
                 await _context.SaveChangesAsync();
                 var dbProducts = await _context.Products.ToListAsync();
                 serviceResponse.Data = dbProducts.Select(_mapper.Map<GetProductResponseDto>).ToList();
